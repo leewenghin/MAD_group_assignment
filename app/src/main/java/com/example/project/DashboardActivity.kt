@@ -1,30 +1,36 @@
 package com.example.project
 
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import androidx.fragment.app.Fragment
+import com.example.project.databinding.ActivityDashboardBinding
+import com.example.project.fragment.GradeFragment
+import com.example.project.fragment.HomeFragment
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var nav_status: TabLayout
-    private lateinit var submission_list: ViewPager2
+    private lateinit var binding: ActivityDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        replaceFragment(HomeFragment()) // Whenever open this page will show HomeFragment
 
-        nav_status = findViewById(R.id.nav_status)
-        submission_list = findViewById(R.id.submissionlist)
-        submission_list.adapter = ViewPagerAdapter(this) // Add submission_list(viewpager) to Adapter
-        TabLayoutMediator(nav_status, submission_list){ tab,index ->  // pass 2 argument and get 2 argument
-            tab.text = when(index){
-                0 -> {"Pending"}
-                1 -> {"Completed"}
-                else -> {throw Resources.NotFoundException("Position Not Found")}
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> replaceFragment(HomeFragment())
+                R.id.grade-> replaceFragment(GradeFragment())
+                else -> {}
             }
-        }.attach() //Instantiating a TabLayoutMediator will only create the mediator object, attach() will link the TabLayout and the ViewPager2 together
+            true
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }
