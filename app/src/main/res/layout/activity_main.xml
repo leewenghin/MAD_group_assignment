@@ -1,88 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/new_era_logo"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="50dp"
-        android:textAlignment="center"
-        android:text="Welcome NEUC-ians!"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginHorizontal="50dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:startIconDrawable="@drawable/user"
-        app:endIconMode="clear_text"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:maxLength="20"
-            android:inputType="text"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginVertical="10dp"
-        android:layout_marginHorizontal="50dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:startIconDrawable="@drawable/padlock"
-        app:endIconMode="password_toggle"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="50dp"
-        android:background="@drawable/rounded_edittext_background"
-        app:backgroundTint="@color/grey"
-        android:textColor="@color/black"
-        android:text="Login"/>
-</LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/new_era_logo"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:textAlignment="center"
+        android:text="Welcome NEUC-ians!"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="50dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:startIconDrawable="@drawable/email"
+        app:endIconMode="clear_text"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:maxLength="20"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="50dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:startIconDrawable="@drawable/padlock"
+        app:endIconMode="password_toggle"
+        app:helperText="Required*"
+        app:helperTextTextColor="@color/red">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/rounded_edittext_background"
+        app:backgroundTint="@color/grey"
+        android:textColor="@color/black"
+        android:text="Login"/>
+</LinearLayout>

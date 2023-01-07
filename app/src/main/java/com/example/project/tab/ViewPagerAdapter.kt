@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.project.fragment.HomeFragment
 
 class ViewPagerAdapter(fragmentActivity: HomeFragment) : FragmentStateAdapter(fragmentActivity) {
-    override fun getItemCount() = 2
+    override fun getItemCount() = 2 // Navigation button
 
     override fun createFragment(position: Int): Fragment {
         return when(position){ // position show fragment
