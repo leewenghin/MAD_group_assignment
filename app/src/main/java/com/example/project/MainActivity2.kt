@@ -5,10 +5,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -33,8 +30,6 @@ class MainActivity2 : AppCompatActivity(), DatePickerDialog.OnDateSetListener, T
     var savedMinute = 0
 
     var getDeadline = ""
-    var currentDateTime = ""
-
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +42,6 @@ class MainActivity2 : AppCompatActivity(), DatePickerDialog.OnDateSetListener, T
 
         val te_label = findViewById<TextInputEditText>(R.id.te_label)
         val te_batch = findViewById<TextInputEditText>(R.id.te_batch)
-        val tv_textTime = findViewById<TextView>(R.id.tv_textTime)
         val btn_addSubmission = findViewById<Button>(R.id.btn_addSubmission)
 
         pickDate(btn_timePicker)
@@ -55,28 +49,40 @@ class MainActivity2 : AppCompatActivity(), DatePickerDialog.OnDateSetListener, T
         btn_addSubmission.setOnClickListener {
             val te_Label = te_label.text.toString().trim()
             val te_Batch = te_batch.text.toString().trim()
-            val deadline = SimpleDateFormat("dd-MM-yyyy HH:mm").parse(getDeadline)
+
+//            val deadline = SimpleDateFormat("dd-MM-yyyy HH:mm").parse(getDeadline)
+            val deadline = getDeadline
+
+            // Current Date Time format
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
 
             // Current Date Time
             val currentDateTime = Calendar.getInstance().time
-            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+
+            // Convert current date time from (Date to String)
             val dateCreated = dateFormat.format(currentDateTime)
 
 
+            val newDocument = db.collection("submission").document()
 
             val data = mapOf(
                 "label" to te_Label,
                 "batch" to te_Batch,
                 "deadline" to deadline,
-                "date_created" to dateCreated
+                "date_created" to dateCreated,
+                "submission_id" to newDocument.id
             )
 
-            db.collection("submission").add(data)
+            newDocument.set(data)
                 .addOnSuccessListener { documentReference ->
                     // The data was successfully saved
+                    Toast.makeText(baseContext, "Submission has been add successfully",
+                        Toast.LENGTH_LONG).show()
                 }
                 .addOnFailureListener { e ->
                     // The save failed
+                    Toast.makeText(baseContext, "Fail to add submission, please try again",
+                        Toast.LENGTH_LONG).show()
                 }
         }
     }
@@ -127,7 +133,7 @@ class MainActivity2 : AppCompatActivity(), DatePickerDialog.OnDateSetListener, T
         savedMinute = minute
 
         getDeadline = String.format("%02d", savedDay) + "-" + String.format("%02d", savedMonth) + "-" + savedYear +
-                " " + savedHour + ":" + savedMinute
+                " " + String.format("%02d", savedHour) + ":" + String.format("%02d", savedMinute)
 
         tv_textTime.text = "${String.format("%02d", savedDay)}/${String.format("%02d", savedMonth)}/" +
                 "$savedYear ${String.format("%02d", savedHour)}:" + "${String.format("%02d", savedMinute)}"
