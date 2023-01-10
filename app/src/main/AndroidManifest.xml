@@ -13,6 +13,23 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".SubmissionApprovalDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_submission_approval_detail"
+            android:theme="@style/Theme.Project.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SubmissionApprovalActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity2"
             android:exported="true">
             <meta-data
@@ -27,6 +44,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

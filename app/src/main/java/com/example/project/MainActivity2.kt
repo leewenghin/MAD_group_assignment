@@ -70,7 +70,8 @@ class MainActivity2 : AppCompatActivity(), DatePickerDialog.OnDateSetListener, T
                 "batch" to te_Batch,
                 "deadline" to deadline,
                 "date_created" to dateCreated,
-                "submission_id" to newDocument.id
+                "submission_id" to newDocument.id,
+                "status" to ""
             )
 
             newDocument.set(data)

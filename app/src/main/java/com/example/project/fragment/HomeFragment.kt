@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.project.R
-import com.example.project.tab.ViewPagerAdapter
+import com.example.project.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

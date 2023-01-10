@@ -5,16 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".tab.PendingFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/submission_item_list">
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:text="Testing"/>
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_pending"
+            android:nestedScrollingEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/submission_item_list">
+        </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
