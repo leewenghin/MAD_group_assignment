@@ -34,7 +34,6 @@ class PendingFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_pending, container, false)
         val itemview = inflater.inflate(R.layout.submission_item_list, container, false)
 
-
         recyclerView = view.findViewById(R.id.recyclerview_pending)
         recyclerView.layoutManager = LinearLayoutManager(context)
         submissionList = arrayListOf()

@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        nav_status = view.findViewById(R.id.nav_status)
+        nav_status = view!!.findViewById(R.id.nav_status)
         submission_list = view.findViewById(R.id.submission_list)
         submission_list.adapter = ViewPagerAdapter(this) // Add submission_list(viewpager) to Adapter
         TabLayoutMediator(nav_status, submission_list){ tab,index ->  // pass 2 argument and get 2 argument

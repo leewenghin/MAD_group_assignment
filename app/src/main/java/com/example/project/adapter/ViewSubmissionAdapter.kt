@@ -8,10 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project.R
-import com.example.project.SubmissionApprovalActivity
-import com.example.project.SubmissionApprovalDetailActivity
-import com.example.project.ViewSubmission
+import com.example.project.*
 
 class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmission>): RecyclerView.Adapter<ViewSubmissionAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -37,12 +34,14 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
         val submissionId = viewSubmissionList[position].submission_id
         val UserId = viewSubmissionList[position].user_id
 
+        val Label = viewSubmissionList[position].label
         val studentName = holder.studentName.text
         val studentId = viewSubmissionList[position].std_id
         val title = viewSubmissionList[position].title
         val submissionStatus = viewSubmissionList[position].submission_status
         val abstract = viewSubmissionList[position].abstract
         val subDate = viewSubmissionList[position].submission_date
+        val fileSub = viewSubmissionList[position].file_Submited
 
         // Show different colour based on status
         when(submissionStatus){
@@ -62,6 +61,7 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
 
             // Store necessary data for next activity
             fun storeData(intent:Intent){
+                intent.putExtra("Label", Label)
                 intent.putExtra("studentName", studentName)
                 intent.putExtra("studentId", studentId)
                 intent.putExtra("title", title)
@@ -69,6 +69,7 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
                 intent.putExtra("subDate", subDate)
                 intent.putExtra("abstract", abstract)
                 intent.putExtra("submissionId", submissionId)
+                intent.putExtra("fileSub", fileSub)
                 intent.putExtra("UserId", UserId)
             }
 
@@ -84,20 +85,21 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
                     view.context.startActivity(intent)
                 }
                 // Proposal report, Thesis report
-                else{}
+                else{
+                    val intent = Intent(view.context, SubmissionRatingActivity::class.java)
+                    storeData(intent)
+                    view.context.startActivity(intent)
+                }
             }
             // If submission status is Approved or Rejected
             else{
                 // Check label and intent to different activities
-                if(holder.label.text == "Title"){
+                // Title, Poster, Proposal PPT, Thesis PPT
+                if(holder.label.text == "Title" || holder.label.text == "Poster" ||
+                    holder.label.text == "Proposal PPT" || holder.label.text == "Thesis PPT"){
                     val intent = Intent(view.context, SubmissionApprovalDetailActivity::class.java)
                     storeData(intent)
                     view.context.startActivity(intent)
-                }
-                // Poster, Proposal PPT, Thesis PPT
-                else if (holder.label.text == "Poster"
-                    || holder.label.text == "Proposal PPT" || holder.label.text == "Thesis PPT"){
-
                 }
                 // Proposal report, Thesis report
                 else{}

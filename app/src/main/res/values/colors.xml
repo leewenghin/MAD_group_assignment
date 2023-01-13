@@ -18,4 +18,11 @@
     <color name="darkgrey">#707070</color>
     <color name="lightgreen">#A9FFAD</color>
     <color name="lightred">#FFADAD</color>
+
+    <color name="markgrey">#EFEFEF</color>
+    <color name="markgreen">#00C808</color>
+    <color name="markyellow">#E8C300</color>
+    <color name="markred">#E70E00</color>
+    <color name="markstroke">#707070</color>
+    <color name="tooltipyellow">#ffc048</color>
 </resources>

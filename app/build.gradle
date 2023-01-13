@@ -58,8 +58,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
+    // Tooltip
+    implementation "com.github.skydoves:balloon:1.5.2"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

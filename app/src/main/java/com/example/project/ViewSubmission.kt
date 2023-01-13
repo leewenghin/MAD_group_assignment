@@ -11,4 +11,5 @@ data class ViewSubmission(
     val std_id:String? = null,
     val abstract:String? = null,
     val submission_date:String? = null,
+    val file_Submited:String? = null,
 )

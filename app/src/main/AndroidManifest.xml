@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".TooltipActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SubmissionRatingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SubmissionApprovalDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_submission_approval_detail"
@@ -53,13 +67,6 @@
         </activity>
         <activity
             android:name=".fragment.HomeFragment"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".GradeListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

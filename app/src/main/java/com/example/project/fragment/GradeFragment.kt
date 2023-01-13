@@ -1,32 +1,27 @@
 package com.example.project.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.project.Grade
 import com.example.project.R
+import com.example.project.adapter.ViewGradeAdapter
+import com.example.project.adapter.ViewSubmissionAdapter
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GradeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GradeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var gradeList: ArrayList<Grade>
+    private var db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -35,26 +30,29 @@ class GradeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_grade, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_grade, container, false)
+        val itemview = inflater.inflate(R.layout.submission_item_list, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GradeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GradeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        recyclerView = view.findViewById(R.id.recyclerview_pending)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        gradeList = arrayListOf()
+
+        val submissionReference = db.collection("mark")
+
+        submissionReference.get().addOnSuccessListener { submissionSnapshot ->
+            if(!submissionSnapshot.isEmpty){
+                for(data in submissionSnapshot){
+                    Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+                    val grade: Grade? =
+                        data.toObject(Grade::class.java)
+                    if (grade != null) {
+                        gradeList.add(grade)
+                    }
+                    recyclerView.adapter = ViewGradeAdapter(gradeList)
                 }
             }
+        }
+
+        return view
     }
 }

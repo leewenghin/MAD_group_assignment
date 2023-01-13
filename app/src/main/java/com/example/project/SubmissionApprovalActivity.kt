@@ -1,14 +1,26 @@
 package com.example.project
 
 import android.annotation.SuppressLint
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment.DIRECTORY_DOWNLOADS
+import android.telephony.mbms.DownloadRequest
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.NonNull
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestoreSettings
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import io.grpc.Context.Storage
 
 class SubmissionApprovalActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
@@ -20,17 +32,25 @@ class SubmissionApprovalActivity : AppCompatActivity() {
 //        }
 //    }
 
+    private lateinit var storageReference: StorageReference
+    private lateinit var ref: StorageReference
+
+    // Filename in Firebase
+    var fileSub:String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_submission_approval)
 
         // Declare variable for the data that get from previous activity
         val submissionId = intent.getStringExtra("submissionId")
+        val Label = intent.getStringExtra("Label")
         val studentName = intent.getStringExtra("studentName")
         val studentId = intent.getStringExtra("studentId")
         val subDate = intent.getStringExtra("subDate")
         val title = intent.getStringExtra("title")
         val abstract = intent.getStringExtra("abstract")
+        fileSub = intent.getStringExtra("fileSub")
         val UserId = intent.getStringExtra("UserId")
 
         // Declare variable for view
@@ -39,10 +59,13 @@ class SubmissionApprovalActivity : AppCompatActivity() {
         val StudentId = findViewById<TextView>(R.id.student_id)
         val Title = findViewById<TextView>(R.id.title)
         val SubmissionDate = findViewById<TextView>(R.id.submission_date)
+        val ViewAbstract = findViewById<TextView>(R.id.tv_abstract)
         val Abstract = findViewById<TextView>(R.id.input_abstract)
         val Feedback = findViewById<TextView>(R.id.input_feedback)
         val ButtonApprove = findViewById<Button>(R.id.btn_approve)
         val ButtonReject = findViewById<Button>(R.id.btn_reject)
+        val fileName = findViewById<TextView>(R.id.fileName)
+        val ButtonDownload = findViewById<Button>(R.id.btn_download)
 
         // Declare data for database variable
         val db = FirebaseFirestore.getInstance()
@@ -52,6 +75,7 @@ class SubmissionApprovalActivity : AppCompatActivity() {
         Title.text = title
         SubmissionDate.text = subDate
         Abstract.text = abstract
+        fileName.text = fileSub
 
 //        val submissionReference = db.collection("submission")
 //
@@ -81,6 +105,24 @@ class SubmissionApprovalActivity : AppCompatActivity() {
 //                        }
 //                }
 //            }
+
+        // If no title then textview disappear
+        if (Title.text == ""){
+            Title.visibility = View.GONE
+        }
+
+        // Display button and text based on label
+        if(Label == "Title"){
+            ButtonDownload.visibility = View.GONE
+            fileName.visibility = View.GONE
+        }else{
+            ViewAbstract.text = "Student's Comment"
+        }
+
+        ButtonDownload.setOnClickListener{
+            download()
+            Toast.makeText(this, "Pressed", Toast.LENGTH_LONG).show()
+        }
 
         ButtonApprove.setOnClickListener {
             val feedback = Feedback.text.toString().trim()
@@ -151,5 +193,34 @@ class SubmissionApprovalActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG).show()
                 }
         }
+    }
+
+    private fun download(){
+        storageReference = FirebaseStorage.getInstance().reference
+        ref = storageReference.child("uploadedFile/" + fileSub)
+        ref.downloadUrl.addOnSuccessListener { uri ->
+            val url = uri.toString()
+            Toast.makeText(baseContext, "Success",
+                Toast.LENGTH_LONG).show()
+            downloadFiles(this, fileSub!!, ".pdf", DIRECTORY_DOWNLOADS, url)
+        }.addOnFailureListener { e ->
+            // handle failure
+            Toast.makeText(baseContext, "Fail",
+                Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun downloadFiles(context: Context, fileName: String, fileExtension: String,
+                              destinationDirectory: String, url: String){
+        val downloadManager: DownloadManager = context.
+        getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+
+        val uri = Uri.parse(url)
+        val request = DownloadManager.Request(uri)
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName)
+
+        downloadManager.enqueue(request)
     }
 }
