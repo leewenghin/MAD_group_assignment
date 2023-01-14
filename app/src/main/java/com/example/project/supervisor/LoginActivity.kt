@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.project.R
 import com.example.project.coordinator.MainActivity3
+import com.example.project.student.MainActivity
 import com.example.project.supervisor.fragment.GradeFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -80,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                             editor.apply()
 
                             // Redirect to student dashboard
-                            val intent = Intent(this, GradeFragment::class.java)
+                            val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                             finish() // Close the current activity and remove it from the activity stack.
                         }
@@ -129,7 +130,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (sharedPreferences.getBoolean("studentLogIn", false)){
             // The user is already logged in, so go to the main app screen
-            val intent = Intent(this, GradeFragment::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         } else if (sharedPreferences.getBoolean("supervisorLogIn", false)){

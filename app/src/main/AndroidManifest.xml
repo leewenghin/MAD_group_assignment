@@ -86,6 +86,69 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".student.TitleSubmissionDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.ThesisSubmissionDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.ProposalSubmissionDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.PosterSubmissionDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.TitleSubmissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.ThesisSubmissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.ProposalSubmissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.PosterSubmissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".student.MainActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>
