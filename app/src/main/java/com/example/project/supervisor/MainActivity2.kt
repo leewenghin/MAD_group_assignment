@@ -1,11 +1,12 @@
-package com.example.project
+package com.example.project.supervisor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.project.R
 import com.example.project.databinding.ActivityMain2Binding
-import com.example.project.fragment.GradeFragment
-import com.example.project.fragment.HomeFragment
+import com.example.project.supervisor.fragment.GradeFragment
+import com.example.project.supervisor.fragment.HomeFragment
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
@@ -19,7 +20,7 @@ class MainActivity2 : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
-                R.id.grade-> replaceFragment(GradeFragment())
+                R.id.grade -> replaceFragment(GradeFragment())
                 else -> {}
             }
             true

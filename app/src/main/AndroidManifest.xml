@@ -20,28 +20,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity2"
+            android:name=".supervisor.MainActivity2"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".TooltipActivity"
+            android:name=".supervisor.TooltipActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SubmissionRatingActivity"
+            android:name=".supervisor.SubmissionRatingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SubmissionApprovalDetailActivity"
+            android:name=".supervisor.SubmissionApprovalDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_submission_approval_detail"
             android:theme="@style/Theme.Project.NoActionBar">
@@ -50,7 +50,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SubmissionApprovalActivity"
+            android:name=".supervisor.SubmissionApprovalActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize">
             <meta-data
@@ -65,7 +65,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".supervisor.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.Project.NoActionBar">
@@ -80,7 +80,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fragment.HomeFragment"
+            android:name=".supervisor.fragment.HomeFragment"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

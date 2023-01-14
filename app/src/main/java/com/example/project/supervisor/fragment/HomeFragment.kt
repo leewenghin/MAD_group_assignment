@@ -1,4 +1,4 @@
-package com.example.project.fragment
+package com.example.project.supervisor.fragment
 
 import android.content.res.Resources
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.project.R
-import com.example.project.adapter.ViewPagerAdapter
+import com.example.project.supervisor.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

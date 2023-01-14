@@ -1,11 +1,11 @@
-package com.example.project.adapter
+package com.example.project.supervisor.adapter
 
 import android.content.res.Resources
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.project.fragment.HomeFragment
-import com.example.project.tab.CompletedFragment
-import com.example.project.tab.PendingFragment
+import com.example.project.supervisor.fragment.HomeFragment
+import com.example.project.supervisor.tab.CompletedFragment
+import com.example.project.supervisor.tab.PendingFragment
 
 class ViewPagerAdapter(fragmentActivity: HomeFragment) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = 2 // Navigation button

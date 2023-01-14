@@ -1,4 +1,4 @@
-package com.example.project
+package com.example.project.supervisor
 
 data class Grade(
     val user_id: String? = null,

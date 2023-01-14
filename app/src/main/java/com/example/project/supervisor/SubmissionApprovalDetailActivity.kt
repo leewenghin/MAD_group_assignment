@@ -1,4 +1,4 @@
-package com.example.project
+package com.example.project.supervisor
 
 import android.app.DownloadManager
 import android.content.Context
@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.project.R
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 

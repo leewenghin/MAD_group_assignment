@@ -1,18 +1,15 @@
-package com.example.project.tab
+package com.example.project.supervisor.tab
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.cardview.widget.CardView
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.R
-import com.example.project.ViewSubmission
-import com.example.project.adapter.ViewSubmissionAdapter
+import com.example.project.supervisor.ViewSubmission
+import com.example.project.supervisor.adapter.ViewSubmissionAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PendingFragment : Fragment() {

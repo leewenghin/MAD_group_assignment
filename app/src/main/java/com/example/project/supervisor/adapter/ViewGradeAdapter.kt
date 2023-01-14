@@ -1,4 +1,4 @@
-package com.example.project.adapter
+package com.example.project.supervisor.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.*
+import com.example.project.supervisor.Grade
+import com.example.project.supervisor.SubmissionRatingActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ViewGradeAdapter(private var viewGradeList: ArrayList<Grade>) :

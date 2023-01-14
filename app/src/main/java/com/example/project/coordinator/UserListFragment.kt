@@ -7,12 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project.Grade
 import com.example.project.R
-import com.example.project.adapter.ViewGradeAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 
 class UserListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView

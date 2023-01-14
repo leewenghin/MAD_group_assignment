@@ -1,14 +1,17 @@
-package com.example.project.adapter
+package com.example.project.supervisor.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.*
+import com.example.project.supervisor.SubmissionApprovalActivity
+import com.example.project.supervisor.SubmissionApprovalDetailActivity
+import com.example.project.supervisor.SubmissionRatingActivity
+import com.example.project.supervisor.ViewSubmission
 
 class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmission>): RecyclerView.Adapter<ViewSubmissionAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

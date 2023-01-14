@@ -1,4 +1,4 @@
-package com.example.project.fragment
+package com.example.project.supervisor.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project.Grade
+import com.example.project.supervisor.Grade
 import com.example.project.R
-import com.example.project.adapter.ViewGradeAdapter
-import com.example.project.adapter.ViewSubmissionAdapter
+import com.example.project.supervisor.adapter.ViewGradeAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
 class GradeFragment : Fragment() {

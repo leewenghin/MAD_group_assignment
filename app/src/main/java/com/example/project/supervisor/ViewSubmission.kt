@@ -1,4 +1,4 @@
-package com.example.project
+package com.example.project.supervisor
 
 data class ViewSubmission(
     val first_name:String? = null,
