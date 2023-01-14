@@ -77,35 +77,6 @@ class SubmissionApprovalActivity : AppCompatActivity() {
         Abstract.text = abstract
         fileName.text = fileSub
 
-//        val submissionReference = db.collection("submission")
-//
-//        // Get student's submission detail query
-//        // Get to specific document with id inside submission collection
-//        submissionReference.document(submissionId.toString()).get()
-//            .addOnSuccessListener { submissionSnapshot ->
-//                // If the specific document exist
-//                if (submissionSnapshot.exists()) {
-//                    submissionSnapshot.reference.collection("users").document(userId.toString())
-//                        .get()
-//                        .addOnSuccessListener { userSnapshot ->
-//                            if (userSnapshot.exists()) {
-//                                val lastName = userSnapshot.getString("last_name")
-//                                val firstName = userSnapshot.getString("first_name")
-//                                val studentId = userSnapshot.getString("std_id")
-//                                val title = userSnapshot.getString("title")
-//                                val submissionDate = userSnapshot.getString("submission_date")
-//                                val abstract = userSnapshot.getString("abstract")
-//
-//                                UserName.text = "$firstName $lastName"
-//                                StudentId.text = "$studentId"
-//                                Title.text = "$title"
-//                                SubmissionDate.text = "$submissionDate"
-//                                Abstract.text = "$abstract"
-//                            }
-//                        }
-//                }
-//            }
-
         // If no title then textview disappear
         if (Title.text == ""){
             Title.visibility = View.GONE
@@ -129,7 +100,17 @@ class SubmissionApprovalActivity : AppCompatActivity() {
 
             val submissionStatus = "Approved"
 
-            val data = mapOf(
+            val data1 = mapOf(
+                "title" to title
+            )
+
+            if(Label == "Title"){
+                db.collection("users").document(UserId!!).update(data1)
+                    .addOnSuccessListener { successSnapshot ->
+                    }
+            }
+
+            val data2 = mapOf(
                 "feedback" to feedback,
                 "submission_status" to submissionStatus
             )
@@ -137,7 +118,7 @@ class SubmissionApprovalActivity : AppCompatActivity() {
             val submissionReference2 = db.collection("submission").document(submissionId.toString())
 
             submissionReference2.collection("users").document(UserId.toString())
-                .update(data).addOnSuccessListener{ documentSnapshot ->
+                .update(data2).addOnSuccessListener{ documentSnapshot ->
                     // The data was successfully saved
                     Toast.makeText(baseContext, "Student work has been approve",
                         Toast.LENGTH_LONG).show()

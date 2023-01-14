@@ -1,14 +1,27 @@
 package com.example.project
 
+import android.app.DownloadManager
+import android.content.Context
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class SubmissionApprovalDetailActivity : AppCompatActivity() {
+    private lateinit var storageReference: StorageReference
+    private lateinit var ref: StorageReference
+
+    // Filename in Firebase
+    var fileSub:String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_submission_approval_detail)
@@ -21,6 +34,7 @@ class SubmissionApprovalDetailActivity : AppCompatActivity() {
         val submissionStatus = intent.getStringExtra("submissionStatus")
         val abstract = intent.getStringExtra("abstract")
         val subDate = intent.getStringExtra("subDate")
+        fileSub = intent.getStringExtra("fileSub")
 
         // Declare variable for view
         val IconTitle = findViewById<ImageView>(R.id.icon_title)
@@ -41,6 +55,11 @@ class SubmissionApprovalDetailActivity : AppCompatActivity() {
         Abstract.text = abstract
         SubmissionStatus.text = submissionStatus
 
+        ButtonDownload.setOnClickListener{
+            download()
+            Toast.makeText(this, "Pressed", Toast.LENGTH_LONG).show()
+        }
+
         // If no title then textview disappear
         if (Title.text == ""){
             Title.visibility = View.GONE
@@ -56,5 +75,34 @@ class SubmissionApprovalDetailActivity : AppCompatActivity() {
             val colorStateList = ContextCompat.getColorStateList(this, R.color.deep_green)
             SubmissionStatus.setBackgroundTintList(colorStateList)
         }else{} // Remain default color
+    }
+
+    private fun download(){
+        storageReference = FirebaseStorage.getInstance().reference
+        ref = storageReference.child("uploadedFile/" + fileSub)
+        ref.downloadUrl.addOnSuccessListener { uri ->
+            val url = uri.toString()
+            Toast.makeText(baseContext, "Success",
+                Toast.LENGTH_LONG).show()
+            downloadFiles(this, fileSub!!, ".pdf", Environment.DIRECTORY_DOWNLOADS, url)
+        }.addOnFailureListener { e ->
+            // handle failure
+            Toast.makeText(baseContext, "Fail",
+                Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun downloadFiles(context: Context, fileName: String, fileExtension: String,
+                              destinationDirectory: String, url: String){
+        val downloadManager: DownloadManager = context.
+        getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+
+        val uri = Uri.parse(url)
+        val request = DownloadManager.Request(uri)
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName)
+
+        downloadManager.enqueue(request)
     }
 }

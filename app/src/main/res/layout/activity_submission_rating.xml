@@ -135,6 +135,7 @@
                 android:id="@+id/layout_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +147,6 @@
                     android:id="@+id/input_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginHorizontal="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1.4"
                     android:background="@drawable/round_input_grey"
@@ -162,6 +162,22 @@
                     android:singleLine="true"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_download"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="25dp"
+                android:backgroundTint="@color/grey"
+                android:text="Download File"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -1083,12 +1099,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginVertical="20dp"
                 android:backgroundTint="@color/grey"
-                android:text="Submit"
+                android:text="Update"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
         </LinearLayout>

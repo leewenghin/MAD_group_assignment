@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.example.project.coordinator.MainActivity3
 import com.example.project.fragment.GradeFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -90,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                             editor.apply()
 
                             // Redirect to supervisor dashboard
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, MainActivity2::class.java)
                             startActivity(intent)
                             finish() // Close the current activity and remove it from the activity stack.
                         }
@@ -102,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
                             editor.apply()
 
                             // Redirect to coordinator dashboard
-                            val intent = Intent(this, MainActivity2::class.java)
+                            val intent = Intent(this, MainActivity3::class.java)
                             startActivity(intent)
                             finish() // Close the current activity and remove it from the activity stack.
                         }
@@ -132,12 +133,12 @@ class LoginActivity : AppCompatActivity() {
             finish()
         } else if (sharedPreferences.getBoolean("supervisorLogIn", false)){
             // The user is not logged in, so show the login screen
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
             finish()
         } else if (sharedPreferences.getBoolean("coordinatorLogIn", false)){
             // The user is not logged in, so show the login screen
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
             finish()
         } else {}
