@@ -4,7 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.*
@@ -18,6 +20,12 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
         val studentName: TextView = itemView.findViewById(R.id.student_name)
         val label: TextView = itemView.findViewById(R.id.icon_title)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
+        val logo: ImageView = itemView.findViewById(R.id.logo)
+
+        val titleDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.title_supervisor)
+        val posterDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.poster_supervisor)
+        val thesisReportDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.thesis_report_supervisor)
+        val proposalReportDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.proposal_report_supervisor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -56,6 +64,24 @@ class ViewSubmissionAdapter(private var viewSubmissionList:ArrayList<ViewSubmiss
                 holder.cardView.setBackgroundResource(R.color.lightred)
 //                Toast.makeText(holder.itemView.context, submissionStatus, Toast.LENGTH_LONG).show()
             }
+        }
+
+        when(Label){
+            "Title" -> {
+//                holder.logo.setImageDrawable(null)
+//                holder.logo.setBackgroundResource(R.drawable.title)
+                holder.logo.setImageDrawable(holder.titleDrawable)
+            }
+            "Poster" -> {
+                holder.logo.setImageDrawable(holder.posterDrawable)
+            }
+            "Proposal Report" -> {
+                holder.logo.setImageDrawable(holder.proposalReportDrawable)
+            }
+            "Thesis Report" -> {
+                holder.logo.setImageDrawable(holder.thesisReportDrawable)
+            }
+            else->{}
         }
 
         // When press the card will redirect to another activity based on label

@@ -2,11 +2,14 @@ package com.example.project.student.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +34,14 @@ class OngoingAdapter(private val submissionList: ArrayList<Submission>) :
         val Status: TextView = itemView.findViewById(R.id.status)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
         val Title: TextView = itemView.findViewById(R.id.project_title)
+        val logo: ImageView = itemView.findViewById(R.id.icon)
+
+        val titleDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.title_icon)
+        val posterDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.poster_icon)
+        val thesisReportDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.thesis_report_icon)
+        val proposalReportDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.proposal_report_icon)
+        val pptDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.ppt_icon)
+
         val colorStateListYellow = ContextCompat.getColorStateList(itemView.context,
             R.color.deep_yellow
         )
@@ -55,6 +66,7 @@ class OngoingAdapter(private val submissionList: ArrayList<Submission>) :
 
         // Replacing the submission_status
 
+        val Label = submissionList[position].label
         val submissionId = submissionList[position].submission_id
         val submissionStatus = submissionList[position].submission_status
         val abstract = submissionList[position].abstract
@@ -331,6 +343,26 @@ class OngoingAdapter(private val submissionList: ArrayList<Submission>) :
                         }
                     }
                 }
+            }
+        }
+
+        when(Label){
+            "Title" -> {
+//                holder.logo.setImageDrawable(null)
+//                holder.logo.setBackgroundResource(R.drawable.title)
+                holder.logo.setImageDrawable(holder.titleDrawable)
+            }
+            "Poster" -> {
+                holder.logo.setImageDrawable(holder.posterDrawable)
+            }
+            "Proposal Report" -> {
+                holder.logo.setImageDrawable(holder.proposalReportDrawable)
+            }
+            "Thesis Report" -> {
+                holder.logo.setImageDrawable(holder.thesisReportDrawable)
+            }
+            else->{
+                holder.logo.setImageDrawable(holder.pptDrawable)
             }
         }
 

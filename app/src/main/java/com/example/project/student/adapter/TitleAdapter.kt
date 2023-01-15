@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project.R
 import com.example.project.student.Submission
 import com.example.project.student.TitleSubmissionActivity
+import com.example.project.student.TitleSubmissionDetailActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -80,7 +81,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
 
             // If Pending, Rejected or Approve, then show detail.
             fun checkDetail(){
-                val intent1 = Intent(view.context, TitleSubmissionActivity::class.java)
+                val intent1 = Intent(view.context, TitleSubmissionDetailActivity::class.java)
                 intent1.putExtra("submissionId", submissionId)
                 view.context.startActivity(intent1)
             }

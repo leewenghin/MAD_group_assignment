@@ -5,8 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +29,10 @@ class PosterAdapter(private val submissionList: ArrayList<Submission>) :
         val Status: TextView = itemView.findViewById(R.id.status)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
         val Title: TextView = itemView.findViewById(R.id.project_title)
+        val logo: ImageView = itemView.findViewById(R.id.icon)
+
+        val posterDrawable = AppCompatResources.getDrawable(itemView.context, R.drawable.poster_icon)
+
         val colorStateListYellow = ContextCompat.getColorStateList(itemView.context, R.color.deep_yellow)
         val colorStateListRed = ContextCompat.getColorStateList(itemView.context, R.color.deep_red)
         val colorStateListGreen = ContextCompat.getColorStateList(itemView.context, R.color.deep_green)
@@ -45,9 +51,10 @@ class PosterAdapter(private val submissionList: ArrayList<Submission>) :
         holder.Status.text = submissionList[position].submission_status
         holder.Title.text = submissionList[position].title
 
-        // Replacing the submission_status
-
         val submissionId = submissionList[position].submission_id
+        val Label = submissionList[position].label
+
+        holder.logo.setImageDrawable(holder.posterDrawable)
 
         // Deadline Date
         val dlDate = SimpleDateFormat("dd-MM-yyyy HH:mm").parse(holder.due_date.text as String)
